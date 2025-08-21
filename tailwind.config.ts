@@ -26,24 +26,11 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))',
-					glow: 'hsl(var(--primary-glow))'
+					foreground: 'hsl(var(--primary-foreground))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
-				},
-				neural: {
-					DEFAULT: 'hsl(var(--neural))',
-					foreground: 'hsl(var(--neural-foreground))'
-				},
-				quantum: {
-					DEFAULT: 'hsl(var(--quantum))',
-					foreground: 'hsl(var(--quantum-foreground))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -53,6 +40,10 @@ export default {
 					DEFAULT: 'hsl(var(--muted))',
 					foreground: 'hsl(var(--muted-foreground))'
 				},
+				accent: {
+					DEFAULT: 'hsl(var(--accent))',
+					foreground: 'hsl(var(--accent-foreground))'
+				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
 					foreground: 'hsl(var(--popover-foreground))'
@@ -60,22 +51,17 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				sidebar: {
+					DEFAULT: 'hsl(var(--sidebar-background))',
+					foreground: 'hsl(var(--sidebar-foreground))',
+					primary: 'hsl(var(--sidebar-primary))',
+					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+					accent: 'hsl(var(--sidebar-accent))',
+					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+					border: 'hsl(var(--sidebar-border))',
+					ring: 'hsl(var(--sidebar-ring))'
 				}
-			},
-			backgroundImage: {
-				'gradient-primary': 'var(--gradient-primary)',
-				'gradient-secondary': 'var(--gradient-secondary)',
-				'gradient-neural': 'var(--gradient-neural)',
-				'gradient-quantum': 'var(--gradient-quantum)',
-				'gradient-cyber': 'var(--gradient-cyber)',
-				'gradient-hero': 'var(--gradient-hero)'
-			},
-			boxShadow: {
-				'quantum': 'var(--shadow-quantum)',
-				'neural': 'var(--shadow-neural)',
-				'cyber': 'var(--shadow-cyber)',
-				'glow': 'var(--shadow-glow)',
-				'card-quantum': 'var(--shadow-card)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
