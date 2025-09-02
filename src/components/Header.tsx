@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { EnhancedButton } from "@/components/ui/enhanced-button";
 import { Menu, X } from "lucide-react";
 
 const Header = () => {
@@ -85,63 +85,77 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Button className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
+            <EnhancedButton variant="liquid" className="hover:shadow-glow transition-all duration-300">
               Get Started
-            </Button>
+            </EnhancedButton>
           </div>
 
           {/* Mobile Menu Button */}
-          <Button
+          <EnhancedButton
             variant="ghost"
             size="icon"
-            className="lg:hidden"
+            className="lg:hidden magnetic"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </Button>
+            <div className={`transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-90 scale-110' : ''}`}>
+              {isMobileMenuOpen ? <X size={24} className="morph-icon" /> : <Menu size={24} className="morph-icon" />}
+            </div>
+          </EnhancedButton>
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden mt-6 pb-6 border-t border-border pt-6">
-            <div className="space-y-4">
-              {navItems.map((item) => (
-                <div key={item.name}>
-                  <Link
-                    to={item.href}
-                    className={`block text-sm font-medium transition-colors hover:text-primary ${
-                      isActive(item.href) 
-                        ? "text-primary" 
-                        : "text-muted-foreground"
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                  
-                  {/* Mobile Submenu */}
-                  {item.submenu && (
-                    <div className="ml-4 mt-2 space-y-2">
-                      {item.submenu.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          to={subItem.href}
-                          className="block text-xs text-muted-foreground hover:text-primary transition-colors"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-              <Button className="w-full bg-gradient-primary hover:shadow-glow transition-all duration-300 mt-6">
+        <div className={`lg:hidden overflow-hidden transition-all duration-500 ease-out ${
+          isMobileMenuOpen 
+            ? 'max-h-screen opacity-100 mt-6 pb-6 border-t border-border pt-6' 
+            : 'max-h-0 opacity-0'
+        }`}>
+          <div className="space-y-4">
+            {navItems.map((item, index) => (
+              <div 
+                key={item.name}
+                className={`${isMobileMenuOpen ? `fade-in-left visible stagger-${index + 1}` : 'fade-in-left'}`}
+              >
+                <Link
+                  to={item.href}
+                  className={`block text-sm font-medium transition-colors hover:text-primary magnetic ${
+                    isActive(item.href) 
+                      ? "text-primary" 
+                      : "text-muted-foreground"
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+                
+                {/* Mobile Submenu */}
+                {item.submenu && (
+                  <div className="ml-4 mt-2 space-y-2">
+                    {item.submenu.map((subItem, subIndex) => (
+                      <Link
+                        key={subItem.name}
+                        to={subItem.href}
+                        className={`block text-xs text-muted-foreground hover:text-primary transition-colors magnetic ${
+                          isMobileMenuOpen ? `fade-in-left visible stagger-${index + subIndex + 2}` : 'fade-in-left'
+                        }`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {subItem.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+            <div className={`${isMobileMenuOpen ? 'fade-in-up visible stagger-6' : 'fade-in-up'}`}>
+              <EnhancedButton 
+                variant="liquid" 
+                className="w-full hover:shadow-glow transition-all duration-300 mt-6"
+              >
                 Get Started
-              </Button>
+              </EnhancedButton>
             </div>
           </div>
-        )}
+        </div>
       </nav>
     </header>
   );
